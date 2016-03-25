@@ -1,12 +1,19 @@
 #!/bin/bash
 
+# start the script with a dot and a space in front, if you want to
+# switch to the working directory of your project (I prefer this method):
+# ~$ . ./start_project.sh
+
 # dependencies:
 # gcc
 # wget
+# make
 # any terminal-based editor
 
 DELAY=0.5;
 
+# change these to your preferred
+# working directory and editor:
 export WORKING_DIR="$HOME";
 export EDITOR="vi";
 
@@ -14,6 +21,7 @@ cd $WORKING_DIR/;
 
 if [ ! -f $WORKING_DIR/.generic_Makefile ];
 then
+	# this loads a simple generic Makefile
 	wget http://kroovy.de/files/.generic_Makefile;
 fi
 
@@ -56,20 +64,21 @@ else
 	cd $1;
 	
 fi
-	cp $WORKING_DIR/.generic_Makefile ./Makefile
-	mkdir include src;
-	echo "> creating sub-folders \"include/\", \"src/\"...";
-	sleep $DELAY;
-	cd src;
-	touch main.c;
-	echo "> creating main.c file...";
-	sleep $DELAY;
 
-	cd ../;
-	echo "> chainging directory to \"`pwd`\"...";
-	sleep $DELAY;
-	
-	echo -n "#include <stdio.h>" > src/main.c;
-	
-	$EDITOR src/main.c;
-	clear; pwd; ls;
+cp $WORKING_DIR/.generic_Makefile ./Makefile
+mkdir include src;
+echo "> creating sub-folders \"include/\", \"src/\"...";
+sleep $DELAY;
+cd src;
+touch main.c;
+echo "> creating main.c file...";
+sleep $DELAY;
+
+cd ../;
+echo "> chainging directory to \"`pwd`\"...";
+sleep $DELAY;
+
+echo -n "#include <stdio.h>" > src/main.c;
+
+$EDITOR src/main.c;
+clear; pwd; ls;
